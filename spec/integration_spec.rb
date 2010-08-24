@@ -25,30 +25,30 @@ if COUCHDB_AVAILABLE && (HAS_SQLITE3 || HAS_MYSQL || HAS_POSTGRES)
 
     property :id, Serial
     property :name, String
-    
+
     repository(:couch) do
       has n, :posts
     end
   end
-  
-  
+
+
   class ::Post
     include DataMapper::CouchResource
-    
+
     property :title, String
     property :body, Text
-    
+
     def self.default_repository_name
       :couch
     end
-    
+
     repository(:default) do
       belongs_to :user
     end
   end
 
   User.auto_migrate!
-  
+
   describe DataMapper::Model, "working with couch resources" do
     before(:all) do
       @user = User.new(:name => "Jamie")
@@ -59,18 +59,18 @@ if COUCHDB_AVAILABLE && (HAS_SQLITE3 || HAS_MYSQL || HAS_POSTGRES)
       @user.destroy.should be_true
       Post.all.destroy!.should be_true
     end
-    
+
     it "should create resources in couch" do
       @user.posts.create(:title => "I'm a little teapot", :body => "this is my handle, this is my spout").should be_true
       Post.first.title.should == "I'm a little teapot"
     end
-    
+
     it "should find child elements" do
       @post = Post.first
       @user.posts.should include(@post)
       @user.posts.length.should == 1
     end
-    
-    
-  end  
+
+
+  end
 end

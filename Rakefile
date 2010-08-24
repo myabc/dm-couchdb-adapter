@@ -25,7 +25,7 @@ begin
     gem.email = 'kabari [a] gmail [d] com'
     gem.homepage = "http://github.com/kabari/#{GEM_NAME}/tree/master"
     gem.authors = ["Kabari Hendrick"]
-    # gem is a Gem::Specification... see 
+    # gem is a Gem::Specification... see
     #  for additional settings
     gem.required_ruby_version = '>= 1.8.6'
     gem.add_dependency("extlib", ">= 0.9.11")
@@ -56,9 +56,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "#{GEM_NAME} #{GEM_VERSION}"
   rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include("LICENSE") 
-  rdoc.rdoc_files.include("TODO") 
+  rdoc.rdoc_files.include("LICENSE")
+  rdoc.rdoc_files.include("TODO")
   rdoc.rdoc_files.include("History.txt")
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
